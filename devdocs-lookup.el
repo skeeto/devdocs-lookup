@@ -97,16 +97,22 @@
            collect (cons (cdr (assoc 'name entry))
                          (cdr (assoc 'path entry)))))
 
+(defvar devdoc--hist-subjects nil)
+
 (defun devdocs-read-subject ()
   "Interactively ask the user for a subject."
   (let* ((subjects (mapcar #'car devdocs-subjects))
-         (subject (ido-completing-read "Subject: " subjects nil t)))
+         (hist 'devdoc--hist-subjects)
+         (subject (ido-completing-read "Subject: " subjects nil t nil hist)))
     (cadr (assoc subject devdocs-subjects))))
 
 (defun devdocs-read-entry (subject)
   "Interactively ask the user for an entry in SUBJECT."
-  (let ((names (mapcar #'car (devdocs-entries subject))))
-    (ido-completing-read "Entry: " names nil :match)))
+  (let ((names (mapcar #'car (devdocs-entries subject)))
+        (hist (intern (format "devdocs--hist-%s" subject))))
+    (unless (boundp hist)
+      (set hist nil))
+    (ido-completing-read "Entry: " names nil :match nil hist)))
 
 ;;;###autoload
 (defun devdocs-lookup (subject entry)
