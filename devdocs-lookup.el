@@ -15,9 +15,17 @@
 
 ;; Currently supported subjects:
 
-;; Angular.js, Backbone.js, CoffeeScript, C++, C, D3, Ember.jg, Git,
-;; HTTP, jQuery, Knockout.js, Less, Lo-Dash, Moment.js, Node.js, PHP,
-;; PostgreSQL, Python, Ruby, Redis, SASS, Underscore.js, YII
+;; Angular.js, Apache HTTP Server, Backbone.js, Bower, C, Chai,
+;; Clojure, CoffeeScript, Cordova, C++, CSS, D3.js, Django, Dojo, DOM,
+;; DOM Events, Drupal, Elixir, Ember.js, Express, Flow, Git, Go,
+;; Grunt, Haskell, HTML, HTTP, io.js, JavaScript, jQuery, jQuery
+;; Mobile, jQuery UI, Knockout.js, Laravel, Less, lodash, Lua,
+;; Marionette.js, Markdown, Meteor, Ruby / Minitest, mocha, Modernizr,
+;; Moment.js, Mongoose, nginx, Node.js, Node.js (LTS), Nokogiri, npm,
+;; OpenTSDB, Phalcon, Phaser, Phoenix, PHP, PHPUnit, PostgreSQL,
+;; Python, Q, Ruby on Rails, React, React Native, Redis, Relay,
+;; RequireJS, RethinkDB, Ruby, Rust, Sass, Sinon, Socket.IO, SVG,
+;; Symfony, Underscore.js, Vagrant, Vue.js, webpack, XPath, Yii.
 
 ;; To bypass indicating the subject on each lookup, devdocs-lookup can
 ;; generate interactive commands for each of the individual subjects
@@ -41,28 +49,86 @@
 
 (defvar devdocs-subjects
   '(("Angular.js" "angular")
+    ("Apache HTTP Server" "apache_http_server")
     ("Backbone.js" "backbone")
-    ("CoffeeScript" "coffeescript")
-    ("C++" "cpp")
+    ("Bower" "bower")
     ("C" "c")
-    ("D3" "d3")
-    ("Ember.jg" "ember")
+    ("Chai" "chai")
+    ("Clojure" "clojure")
+    ("CoffeeScript" "coffeescript")
+    ("Cordova" "cordova")
+    ("C++" "cpp")
+    ("CSS" "css")
+    ("D3.js" "d3")
+    ("Django" "django")
+    ("Dojo" "dojo")
+    ("DOM" "dom")
+    ("DOM Events" "dom_events")
+    ("Drupal" "drupal")
+    ("Elixir" "elixir")
+    ("Ember.js" "ember")
+    ("Express" "express")
+    ("Flow" "flow")
     ("Git" "git")
+    ("Go" "go")
+    ("Grunt" "grunt")
+    ("Haskell" "haskell")
+    ("HTML" "html")
     ("HTTP" "http")
+    ("io.js" "iojs")
+    ("JavaScript" "javascript")
     ("jQuery" "jquery")
+    ("jQuery Mobile" "jquerymobile")
+    ("jQuery UI" "jqueryui")
     ("Knockout.js" "knockout")
+    ("Laravel" "laravel")
     ("Less" "less")
-    ("Lo-Dash" "lodash")
+    ("lodash" "lodash")
+    ("Lua" "lua")
+    ("Marionette.js" "marionette")
+    ("Markdown" "markdown")
+    ("Meteor" "meteor")
+    ("Ruby / Minitest" "minitest")
+    ("mocha" "mocha")
+    ("Modernizr" "modernizr")
     ("Moment.js" "moment")
+    ("Mongoose" "mongoose")
+    ("nginx" "nginx")
     ("Node.js" "node")
+    ("Node.js (LTS)" "node_lts")
+    ("Nokogiri" "nokogiri")
+    ("npm" "npm")
+    ("OpenTSDB" "opentsdb")
+    ("Phalcon" "phalcon")
+    ("Phaser" "phaser")
+    ("Phoenix" "phoenix")
     ("PHP" "php")
+    ("PHPUnit" "phpunit")
     ("PostgreSQL" "postgresql")
     ("Python" "python")
-    ("Ruby" "ruby")
+    ("Python 2" "python2")
+    ("Q" "q")
+    ("Ruby on Rails" "rails")
+    ("React" "react")
+    ("React Native" "react_native")
     ("Redis" "redis")
-    ("SASS" "sass")
+    ("Relay" "relay")
+    ("RequireJS" "requirejs")
+    ("RethinkDB" "rethinkdb")
+    ("Ruby" "ruby")
+    ("Rust" "rust")
+    ("Sass" "sass")
+    ("Sinon" "sinon")
+    ("Socket.IO" "socketio")
+    ("SVG" "svg")
+    ("Symfony" "symfony")
     ("Underscore.js" "underscore")
-    ("YII" "yii"))
+    ("Vagrant" "vagrant")
+    ("Vue.js" "vue")
+    ("webpack" "webpack")
+    ("XPath" "xpath")
+    ("Yii" "yii")
+    ("Yii 1" "yii1"))
   "List of subjects supported by devdocs.io.")
 
 
