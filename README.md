@@ -4,7 +4,7 @@ This package provides an interactive function `devdocs-lookup` to
 quickly jump to documentation on a particular API at
 [devdocs.io](http://devdocs.io/) with your browser. It works similarly
 to [javadoc-lookup](https://github.com/skeeto/javadoc-lookup), using
-Ido to make a fuzzy match with a particular entry.
+your locally-configured `completing-read` to select an entry.
 
 The currently supported "subjects" are the same as devdocs.io:
 Angular.js, Backbone.js, CoffeeScript, C++, C, D3, Ember.jg, Git,

@@ -30,7 +30,6 @@
 ;;; Code:
 
 (require 'url)
-(require 'ido)
 (require 'json)
 (require 'cl-lib)
 
@@ -103,7 +102,7 @@
   "Interactively ask the user for a subject."
   (let* ((subjects (mapcar #'car devdocs-subjects))
          (hist 'devdoc--hist-subjects)
-         (subject (ido-completing-read "Subject: " subjects nil t nil hist)))
+         (subject (completing-read "Subject: " subjects nil t nil hist)))
     (cadr (assoc subject devdocs-subjects))))
 
 (defun devdocs-read-entry (subject)
@@ -112,7 +111,7 @@
         (hist (intern (format "devdocs--hist-%s" subject))))
     (unless (boundp hist)
       (set hist nil))
-    (ido-completing-read "Entry: " names nil :match nil hist)))
+    (completing-read "Entry: " names nil :match nil hist)))
 
 ;;;###autoload
 (defun devdocs-lookup (subject entry)
