@@ -172,18 +172,47 @@
          (subject (completing-read "Subject: " subjects nil t nil hist)))
     (cadr (assoc subject devdocs-subjects))))
 
+(defun devdocs--best-match (string names)
+  "Return the best match for STRING in NAMES, if any.
+An exact match takes the highest priority, then a partial match
+on symbol boundaries, then any partial match. Matches are
+case-sensitive."
+  (let* ((best-match nil)
+         (best-score 0)
+         (case-fold-search nil)
+         (re-float (regexp-quote string))
+         (re-symbol (concat "\\_<" re-float "\\_>")))
+    (dolist (name names)
+      (cond
+       ;; Exact match
+       ((and (< best-score 100)
+             (string= string name))
+        (setf best-match name
+              best-score 100))
+       ;; Symbol-boundary match
+       ((and (< best-score 80)
+             (string-match-p re-symbol name))
+        (setf best-match name
+              best-score 80))
+       ;; Loose match
+       ((and (< best-score 60)
+             (let ((case-fold-search t))
+               (string-match-p re-float name)))
+        (setf best-match name
+              best-score 60))))
+    best-match))
+
 (defun devdocs-read-entry (subject)
   "Interactively ask the user for an entry in SUBJECT."
   (let* ((names (mapcar #'car (devdocs-entries subject)))
          (hist (intern (format "devdocs--hist-%s" subject)))
          (symbol (symbol-at-point))
-         (default (if symbol (symbol-name symbol) nil))
-         (valid-p (member default names))
-         (prompt (if valid-p
-                     (format "Entry (%s) [%s]: " symbol subject)
+         (best-match
+          (and symbol (devdocs--best-match (symbol-name symbol) names)))
+         (prompt (if best-match
+                     (format "Entry (%s) [%s]: " best-match subject)
                    (format "Entry [%s]: " subject))))
-    (completing-read prompt names nil :require-match nil hist
-                     (if valid-p default nil))))
+    (completing-read prompt names nil :require-match nil hist best-match)))
 
 ;;;###autoload
 (defun devdocs-lookup (subject entry)
