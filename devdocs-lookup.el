@@ -11,7 +11,7 @@
 ;; quickly jump to documentation on a particular API at devdocs.io
 ;; with your browser.
 
-;; http://devdocs.io/
+;; https://devdocs.io/
 
 ;; Currently supported subjects:
 
@@ -41,10 +41,10 @@
 (require 'json)
 (require 'cl-lib)
 
-(defvar devdocs-base-url "http://devdocs.io"
+(defvar devdocs-base-url "https://devdocs.io"
   "Base url for devdocs.io.")
 
-(defvar devdocs-base-index-url "http://docs.devdocs.io"
+(defvar devdocs-base-index-url "https://docs.devdocs.io"
   "Base url for devdocs.io.")
 
 (defvar devdocs-subjects
