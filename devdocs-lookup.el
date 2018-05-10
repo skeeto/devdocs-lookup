@@ -175,10 +175,15 @@
 (defun devdocs-read-entry (subject)
   "Interactively ask the user for an entry in SUBJECT."
   (let ((names (mapcar #'car (devdocs-entries subject)))
-        (hist (intern (format "devdocs--hist-%s" subject))))
+        (hist (intern (format "devdocs--hist-%s" subject)))
+        (init (symbol-name (symbol-at-point))))
     (unless (boundp hist)
       (set hist nil))
-    (completing-read "Entry: " names nil :match nil hist)))
+    ;; Thu May 10 09:10:18 EDT 2018 - kmodi
+    ;; For now, using the deprecated INITIAL-INPUT argument as that
+    ;; works as I want.
+    ;; http://lists.gnu.org/r/help-gnu-emacs/2018-05/msg00059.html
+    (completing-read (format "Entry (%s): " subject) names nil :require-match init hist)))
 
 ;;;###autoload
 (defun devdocs-lookup (subject entry)
