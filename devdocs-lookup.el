@@ -184,7 +184,13 @@
 (defun devdocs-lookup (subject entry)
   "Visit the documentation for ENTRY from SUBJECT in a browser."
   (interactive
-   (let* ((subject (devdocs-read-subject))
+   ;; Try to guess the subject from the major mode.
+   (let* ((case-fold-search t)
+          (major-mode-string
+           (replace-regexp-in-string "-mode$" "" (symbol-name major-mode)))
+          (subject-dwim (cadr (cl-assoc major-mode-string devdocs-subjects
+                                        :test #'string-match-p)))
+          (subject (or subject-dwim (devdocs-read-subject)))
           (entry (devdocs-read-entry subject)))
      (list subject entry)))
   (let ((path (cdr (assoc entry (devdocs-entries subject)))))
