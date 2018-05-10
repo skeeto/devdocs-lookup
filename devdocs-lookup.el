@@ -94,6 +94,7 @@
     ("Moment.js" "moment")
     ("Mongoose" "mongoose")
     ("nginx" "nginx")
+    ("Nim" "nim")
     ("Node.js" "node")
     ("Node.js (LTS)" "node_lts")
     ("Nokogiri" "nokogiri")
