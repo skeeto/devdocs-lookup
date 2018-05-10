@@ -183,9 +183,16 @@
 (defun devdocs-lookup (subject entry)
   "Visit the documentation for ENTRY from SUBJECT in a browser."
   (interactive
-   (let* ((subject (devdocs-read-subject))
-          (entry (devdocs-read-entry subject)))
-     (list subject entry)))
+   (cl-letf (((symbol-function 'string-match-case-insensitive)
+              (lambda (str1 str2)
+                (string= (downcase str1) (downcase str2)))))
+     (let* ((major-mode-str (replace-regexp-in-string "-mode" "" (symbol-name major-mode)))
+            ;; If major mode is `nim-mode', the ("Nim" "nim") element
+            ;; will be auto-picked from `devdocs-subjects'.
+            (subject-dwim (cadr (assoc major-mode-str devdocs-subjects #'string-match-case-insensitive)))
+            (subject (or subject-dwim (devdocs-read-subject)))
+            (entry (devdocs-read-entry subject)))
+       (list subject entry))))
   (let ((path (cdr (assoc entry (devdocs-entries subject)))))
     (when path
       (browse-url (format "%s/%s/%s" devdocs-base-url subject path))
