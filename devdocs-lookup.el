@@ -132,6 +132,8 @@
     ("Yii 1" "yii1"))
   "List of subjects supported by devdocs.io.")
 
+(defvar-local devdocs--default-subject nil
+  "Remembers the subject for the given buffer.")
 
 (defvar devdocs-index (make-hash-table :test 'equal)
   "Hash table for indexes for various subjects.")
@@ -224,8 +226,12 @@ case-sensitive."
            (replace-regexp-in-string "-mode$" "" (symbol-name major-mode)))
           (subject-dwim (cadr (cl-assoc major-mode-string devdocs-subjects
                                         :test #'string-match-p)))
-          (subject (or subject-dwim (devdocs-read-subject)))
+          (subject (or devdocs--default-subject
+                       subject-dwim
+                       (devdocs-read-subject)))
           (entry (devdocs-read-entry subject)))
+     (when subject
+       (setf devdocs--default-subject subject))
      (list subject entry)))
   (let ((path (cdr (assoc entry (devdocs-entries subject)))))
     (when path
