@@ -226,9 +226,11 @@ case-sensitive."
            (replace-regexp-in-string "-mode$" "" (symbol-name major-mode)))
           (subject-dwim (cadr (cl-assoc major-mode-string devdocs-subjects
                                         :test #'string-match-p)))
-          (subject (or devdocs--default-subject
-                       subject-dwim
-                       (devdocs-read-subject)))
+          (subject (if current-prefix-arg
+                       (devdocs-read-subject)
+                     (or devdocs--default-subject
+                         subject-dwim
+                         (devdocs-read-subject))))
           (entry (devdocs-read-entry subject)))
      (when subject
        (setf devdocs--default-subject subject))
