@@ -343,6 +343,7 @@
     ("Ruby 2.3" "ruby~2.3")
     ("Ruby 2.4" "ruby~2.4")
     ("Ruby 2.5" "ruby~2.5")
+    ("Ruby 2.6" "ruby~2.6")
     ("Ruby on Rails 4.1" "rails~4.1")
     ("Ruby on Rails 4.2" "rails~4.2")
     ("Ruby on Rails 5.0" "rails~5.0")
