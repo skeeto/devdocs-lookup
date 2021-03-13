@@ -44,7 +44,7 @@
 (defvar devdocs-base-url "https://devdocs.io"
   "Base url for devdocs.io.")
 
-(defvar devdocs-base-index-url "https://docs.devdocs.io"
+(defvar devdocs-base-index-url "https://documents.devdocs.io"
   "Base url for devdocs.io.")
 
 (defvar devdocs-subjects
