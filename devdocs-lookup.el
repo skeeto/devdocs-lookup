@@ -513,8 +513,9 @@ case-sensitive."
    (let* ((case-fold-search t)
           (major-mode-string
            (replace-regexp-in-string "-mode$" "" (symbol-name major-mode)))
-          (subject-dwim (cadr (cl-assoc major-mode-string devdocs-subjects
-                                        :test #'string-match-p)))
+          (subject-dwim
+           (cadr (cl-assoc (regexp-quote major-mode-string) devdocs-subjects
+                           :test #'string-match-p)))
           (subject (if current-prefix-arg
                        (devdocs-read-subject)
                      (or devdocs--default-subject
